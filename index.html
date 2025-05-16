@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ShinkaBot (Shinkansen Buddy Helper)</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>🚄 ShinkaBot (Shinkansen Buddy Helper)</h1>
+
     <div class="language-selector">
-        <button onclick="setLanguage('en')">🇺🇸 English</button>
-        <button onclick="setLanguage('es')">🇪🇸 Español</button>
-        <button onclick="setLanguage('jp')">🇯🇵 日本語</button>
+      <button onclick="setLanguage('en')">🇺🇸 English</button>
+      <button onclick="setLanguage('es')">🇪🇸 Español</button>
+      <button onclick="setLanguage('jp')">🇯🇵 日本語</button>
     </div>
 
     <div id="chat-box"></div>
@@ -20,6 +21,19 @@
     <div class="input-area">
       <input type="text" id="user-input" placeholder="Type your question..." />
       <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div class="donations">
+      <h3>💖 Support ShinkaBot</h3>
+      <p>
+        If you find this helpful, consider supporting:
+        <a href="https://paypal.me/yourusername" target="_blank">PayPal</a> |
+        <a href="https://ko-fi.com/yourusername" target="_blank">Ko-fi</a> |
+        <a href="https://buymeacoffee.com/yourusername" target="_blank">Buy Me a Coffee</a>
+      </p>
+      <p>Follow us: 
+        <a href="https://instagram.com/karura_carlis" target="_blank">Instagram</a>
+      </p>
     </div>
 
     <div class="disclaimer">
