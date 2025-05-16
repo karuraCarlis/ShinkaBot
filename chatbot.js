@@ -1,26 +1,3 @@
-function sendMessage() {
-  const input = document.getElementById("user-input");
-  const chatBox = document.getElementById("chat-box");
-  const userMessage = input.value.trim();
-
-  if (userMessage === "") return;
-
-  chatBox.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
-
-  const lower = userMessage.toLowerCase();
-  let reply = "I'm sorry, I didn't understand. Please ask about Shinkansen routes or travel times.";
-
-  if (lower.includes("tokyo") && lower.includes("osaka")) {
-    reply = "The Shinkansen from Tokyo to Osaka takes about 2.5 to 3 hours. Nozomi is the fastest.";
-  } else if (lower.includes("jr pass")) {
-    reply = "The JR Pass is valid on Hikari and Kodama trains, but not on Nozomi.";
-  }
-
-  chatBox.innerHTML += `<p><strong>Bot:</strong> ${reply}</p>`;
-  input.value = "";
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
 let currentLanguage = 'en';
 
 function setLanguage(lang) {
@@ -55,12 +32,16 @@ function addMessage(message, sender) {
 
 function respond(message) {
   let response = '';
-  if (currentLanguage === 'en') {
-    response = `You asked in English: "${message}". Sorry, I am still learning!`;
+
+  if (message.toLowerCase().includes("donate") || message.toLowerCase().includes("apoyar")) {
+    response = "💖 You can support ShinkaBot via PayPal, Ko-fi or Buy Me a Coffee. Links below! 💖";
+  } else if (currentLanguage === 'en') {
+    response = `You asked in English: "${message}". I'm still learning, but happy to help!`;
   } else if (currentLanguage === 'es') {
-    response = `Has preguntado en Español: "${message}". ¡Estoy aprendiendo aún!`;
+    response = `Has preguntado en Español: "${message}". ¡Todavía estoy aprendiendo, pero feliz de ayudarte!`;
   } else if (currentLanguage === 'jp') {
-    response = `日本語で質問しましたね：「${message}」。まだ勉強中です！`;
+    response = `日本語で質問しましたね：「${message}」。まだ勉強中ですが、助けたいです！`;
   }
+
   addMessage(response, 'bot');
 }
