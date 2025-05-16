@@ -20,3 +20,47 @@ function sendMessage() {
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 }
+
+let currentLanguage = 'en';
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  addMessage(`Language set to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
+  clearChat();
+}
+
+function clearChat() {
+  document.getElementById('chat-box').innerHTML = '';
+}
+
+function sendMessage() {
+  const input = document.getElementById('user-input');
+  const message = input.value.trim();
+  if (!message) return;
+  addMessage(message, 'user');
+  input.value = '';
+  setTimeout(() => {
+    respond(message);
+  }, 500);
+}
+
+function addMessage(message, sender) {
+  const chatBox = document.getElementById('chat-box');
+  const messageElem = document.createElement('div');
+  messageElem.className = sender;
+  messageElem.textContent = message;
+  chatBox.appendChild(messageElem);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function respond(message) {
+  let response = '';
+  if (currentLanguage === 'en') {
+    response = `You asked in English: "${message}". Sorry, I am still learning!`;
+  } else if (currentLanguage === 'es') {
+    response = `Has preguntado en Español: "${message}". ¡Estoy aprendiendo aún!`;
+  } else if (currentLanguage === 'jp') {
+    response = `日本語で質問しましたね：「${message}」。まだ勉強中です！`;
+  }
+  addMessage(response, 'bot');
+}
