@@ -1,6 +1,6 @@
 let currentLanguage = 'en';
 let shinkansenData = {};
-let msg = message.toLowerCase();
+
 
 fetch('data.json')
   .then(response => response.json())
@@ -39,7 +39,7 @@ function addMessage(message, sender) {
 }
 
 function respond(message) {
-  
+  let msg = message.toLowerCase();
   let response = '';
 
     const routes = shinkansenData.routes;
