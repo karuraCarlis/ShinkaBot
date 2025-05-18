@@ -45,9 +45,9 @@ function respond(message) {
     const routes = shinkansenData.routes;
     const fares = shinkansenData.fares;
 
-  if (msg.includes("tokyo") && msg.includes("osaka")) {
+  if (message.toLowerCase().includes("tokyo") && message.toLowerCase().includes("osaka")) {
     response = routes["tokyo-osaka"][currentLanguage];
-  } else if (msg.includes("osaka") && msg.includes("fuji")) {
+  } else if (message.toLowerCase().includes("osaka") && message.toLowerCase().includes("fuji")) {
     response = routes["osaka-fuji"][currentLanguage];
   } else if (msg.includes("fuji") && msg.includes("nagano")) {
     response = routes["fuji-nagano"][currentLanguage];
@@ -64,7 +64,7 @@ function respond(message) {
     }
 
 
-  if (message.toLowerCase().includes("donate") || message.toLowerCase().includes("apoyar")) {
+  if (cc.includes("donate") || message.toLowerCase().includes("apoyar")) {
     response = "💖 You can support ShinkaBot via PayPal, Ko-fi or Buy Me a Coffee. Links below! 💖";
   } else if (currentLanguage === 'en') {
     response = `You asked in English: "${message}". I'm still learning, but happy to help!`;
