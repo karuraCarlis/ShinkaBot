@@ -1,0 +1,31 @@
+{
+  "routes": {
+    "tokyo-osaka": {
+      "en": "🚄 Tokaido Shinkansen (Nozomi, Hikari, Kodama). Duration: 2.5–4 hrs. ",
+      "es": "🚄 Shinkansen Tokaido (Nozomi, Hikari, Kodama). Duración: 2.5–4 hrs",
+      "jp": "🚄 東海道新幹線（のぞみ、ひかり、こだま）。所要時間：2.5〜4時間。"
+    },
+    "osaka-fuji": {
+      "en": "🚄 Via Tokaido Shinkansen and transfer. ~2.5 hrs.",
+      "es": "🚄 Vía Tokaido Shinkansen con transbordo. ~2.5 hrs.",
+      "jp": "🚄 東海道新幹線経由で乗り換えあり。約2.5時間。"
+    },
+    "fuji-nagano": {
+      "en": "🚄 Limited express + Hokuriku Shinkansen. ~2 hrs.",
+      "es": "🚄 Expreso limitado + Shinkansen Hokuriku. ~2 hrs.",
+      "jp": "🚄 特急＋北陸新幹線。約2時間。"
+    },
+    "tokyo-nagano": {
+      "en": "🚄 Hokuriku Shinkansen (Asama, Hakutaka). ~1.5 hrs. ",
+      "es": "🚄 Shinkansen Hokuriku (Asama, Hakutaka). ~1.5 hrs. ",
+      "jp": "🚄 北陸新幹線（あさま・はくたか）。約1.5時間。"
+    }
+  },
+  "fares": {
+    "children": {
+      "en": "Children 6–11 pay half the adult fare. Under 6 ride free if no seat is occupied.",
+      "es": "Los niños de 6 a 11 pagan la mitad del precio. Menores de 6 viajan gratis si no ocupan asiento.",
+      "jp": "6〜11歳の子供は大人の半額。6歳未満は座席を使わなければ無料。"
+    }
+  }
+}
