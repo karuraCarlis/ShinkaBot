@@ -64,8 +64,8 @@ function respond(message) {
     }
 
 
-  if (cc.includes("donate") || message.toLowerCase().includes("apoyar")) {
-    response = "💖 You can support ShinkaBot via PayPal, Ko-fi or Buy Me a Coffee. Links below! 💖";
+  if (message.toLowerCase().includes("donate") || message.toLowerCase().includes("apoyar")) {
+    response = "💖 You can support ShinkaBot via PayPal or Ko-fi. Links below! 💖";
   } else if (currentLanguage === 'en') {
     response = `You asked in English: "${message}". I'm still learning, but happy to help!`;
   } else if (currentLanguage === 'es') {
