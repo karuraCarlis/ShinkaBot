@@ -18,9 +18,9 @@ h1 {
 }
 
 ul {
-display: -webkit-flex;
 display: flex;
 }
+
 #chat-box {
   border: 1px solid #ccc;
   height: 300px;
