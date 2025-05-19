@@ -45,9 +45,9 @@ function respond(message) {
     const routes = shinkansenData.routes;
     const fares = shinkansenData.fares;
 
-  if (message.toLowerCase().includes("tokyo") && message.toLowerCase().includes("osaka")) {
+  if (msg.includes("tokyo") && msg.includes("osaka")) {
     response = routes["tokyo-osaka"][currentLanguage];
-  } else if (message.toLowerCase().includes("osaka") && message.toLowerCase().includes("fuji")) {
+  } else if (msg.includes("osaka") && msg.includes("fuji")) {
     response = routes["osaka-fuji"][currentLanguage];
   } else if (msg.includes("fuji") && msg.includes("nagano")) {
     response = routes["fuji-nagano"][currentLanguage];
@@ -55,6 +55,14 @@ function respond(message) {
     response = routes["tokyo-nagano"][currentLanguage];
   } else if (msg.includes("child") || msg.includes("niño") || msg.includes("子供")) {
     response = fares.children[currentLanguage];
+  } else if (msg.includes("donate") || msg.includes("apoyar")) {
+    response = "💖 You can support ShinkaBot via PayPal or Ko-fi. Links below! 💖";
+  } else if (currentLanguage === 'en') {
+    response = `You asked in English: "${message}". I'm still learning, but happy to help!`;
+  } else if (currentLanguage === 'es') {
+    response = `Has preguntado en Español: "${message}". ¡Todavía estoy aprendiendo, pero feliz de ayudarte!`;
+  } else if (currentLanguage === 'jp') {
+    response = `日本語で質問しましたね：「${message}」。まだ勉強中ですが、助けたいです！`;
   } else {
       response = {
         en: "❓ I’m still learning! Please try a different question about the Shinkansen.",
@@ -63,16 +71,6 @@ function respond(message) {
       }[currentLanguage];
     }
 
-
-  if (message.toLowerCase().includes("donate") || message.toLowerCase().includes("apoyar")) {
-    response = "💖 You can support ShinkaBot via PayPal or Ko-fi. Links below! 💖";
-  } else if (currentLanguage === 'en') {
-    response = `You asked in English: "${message}". I'm still learning, but happy to help!`;
-  } else if (currentLanguage === 'es') {
-    response = `Has preguntado en Español: "${message}". ¡Todavía estoy aprendiendo, pero feliz de ayudarte!`;
-  } else if (currentLanguage === 'jp') {
-    response = `日本語で質問しましたね：「${message}」。まだ勉強中ですが、助けたいです！`;
-  }
 
   addMessage(response, 'bot');
 }
