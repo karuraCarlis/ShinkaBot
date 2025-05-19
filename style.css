@@ -51,7 +51,7 @@ button {
   cursor: pointer;
 }
   /* el hover es al seleccionar */
- button: hover {
+ #language-selector button: hover {
   font-weight: bold;
   background-color: #800000;
   border: solid 1px black;
