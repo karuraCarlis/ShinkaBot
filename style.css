@@ -16,6 +16,11 @@ h1 {
   text-align: center;
   color: #1a773e8;
 }
+
+ul {
+display: -webkit-flex;
+display: flex;
+}
 #chat-box {
   border: 1px solid #ccc;
   height: 300px;
