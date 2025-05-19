@@ -54,12 +54,7 @@ button {
   text-align: center;
   margin: 10px 0;
 }
-.donations {
-  margin-top: 20px;
-  font-size: 0.9em;
-  text-align: center;
-  color: #666;
-.disclaimer {
+.donations .disclaimer {
   margin-top: 20px;
   font-size: 0.9em;
   text-align: center;
