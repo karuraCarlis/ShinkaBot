@@ -58,11 +58,11 @@ function respond(message) {
   } else if (msg.includes("donate") || msg.includes("apoyar")) {
     response = "💖 You can support ShinkaBot via PayPal or Ko-fi. Links below! 💖";
   } else if (currentLanguage === 'en') {
-    response = `You asked in English: "${message}". I'm still learning, but happy to help!`;
+    response = `You asked in English: "${message}". I'm still learning, but happy to help!Please try a different question about the Shinkansen.`;
   } else if (currentLanguage === 'es') {
-    response = `Has preguntado en Español: "${message}". ¡Todavía estoy aprendiendo, pero feliz de ayudarte!`;
+    response = `Has preguntado en Español: "${message}". ¡Todavía estoy aprendiendo, pero feliz de ayudarte!Prueba con otra pregunta sobre el Shinkansen.`;
   } else if (currentLanguage === 'jp') {
-    response = `日本語で質問しましたね：「${message}」。まだ勉強中ですが、助けたいです！`;
+    response = `日本語で質問しましたね：「${message}」。まだ勉強中ですが、助けたいです！新幹線に関する別の質問を試してください。`;
   } else {
       response = {
         en: "❓ I’m still learning! Please try a different question about the Shinkansen.",
