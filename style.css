@@ -62,7 +62,14 @@ button {
   background-color: #800000;
   border: solid 1px black;
 }
-   
+
+  /* el focus al presionar */
+ button:focus {
+  font-weight: bold;
+  background-color: #800000;
+  border: solid 1px black;
+}
+
 .language-selector {
   text-align: center;
   margin: 10px 0;
