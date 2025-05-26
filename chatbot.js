@@ -1,7 +1,7 @@
 let currentLanguage = 'en';
 let shinkansenData = {};
 let stationData = {};
-let map;
+let map, infoWindow;
 let cityList = [];
 
   const translations = {
@@ -129,7 +129,7 @@ function initMap(lat = 35.6812, lng = 139.7671) {
     zoom: 10,
     center
   });
-
+  infoWindow = new google.maps.InfoWindow();
   loadStations(); // <-- aquí llama a cargar las estaciones
   return map;
 }
@@ -235,3 +235,4 @@ function mostrarResultado(est) {
   document.getElementById("response").textContent =
     translations[currentLanguage].result + est[currentLanguage];
 }
+window.initMap = initMap;
