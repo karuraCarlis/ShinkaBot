@@ -58,7 +58,7 @@ function setLanguage(lang) {
     document.getElementById("response").textContent = ""
   
   clearChat();
-  addMessage(`'(｡˃ ᵕ ˂ ) >>' ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
+  addMessage(`(｡˃ ᵕ ˂ ) to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
 }
 
 function clearChat() {
