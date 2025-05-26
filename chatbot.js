@@ -57,8 +57,8 @@ function setLanguage(lang) {
       lang === 'jp' ? "例：大阪、長野" : "e.g. Osaka, Nagano";
     document.getElementById("response").textContent = ""
   
- addMessage(`Language set to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
- clearChat();
+  clearChat();
+  addMessage(`Language set to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
 }
 
 function clearChat() {
