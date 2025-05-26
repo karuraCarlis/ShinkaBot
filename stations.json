@@ -1,0 +1,32 @@
+{
+  "tokyo": {
+    "en": "Tokyo Station (東京駅)",
+    "es": "Estación de Tokio (東京駅)",
+    "jp": "東京駅（Tokyo Station）"
+  },
+  "osaka": {
+    "en": "Shin-Osaka Station (新大阪駅)",
+    "es": "Estación Shin-Osaka (新大阪駅)",
+    "jp": "新大阪駅（Shin-Osaka Station）"
+  },
+  "kyoto": {
+    "en": "Kyoto Station (京都駅)",
+    "es": "Estación de Kioto (京都駅)",
+    "jp": "京都駅（Kyoto Station）"
+  },
+  "nagano": {
+    "en": "Nagano Station (長野駅)",
+    "es": "Estación de Nagano (長野駅)",
+    "jp": "長野駅（Nagano Station）"
+  },
+  "fuji": {
+    "en": "Shin-Fuji Station (新富士駅)",
+    "es": "Estación Shin-Fuji (新富士駅)",
+    "jp": "新富士駅（Shin-Fuji Station）"
+  },
+  "yokohama": {
+    "en": "Shin-Yokohama Station (新横浜駅)",
+    "es": "Estación Shin-Yokohama (新横浜駅)",
+    "jp": "新横浜駅（Shin-Yokohama Station）"
+  }
+}
