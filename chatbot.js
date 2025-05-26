@@ -106,6 +106,8 @@ function respond(message) {
     response = routes["tokyo-nagano"][currentLanguage];
   } else if (msg.includes("child") || msg.includes("niño") || msg.includes("子供")) {
     response = fares.children[currentLanguage];
+  } else if (msg.includes("disabilities") || msg.includes("silla de ruedas") || msg.includes("persona con discapacidad")) {
+    response = fares.disabilities[currentLanguage];
   } else if (msg.includes("donate") || msg.includes("apoyar")|| msg.includes("donar")) {
     response = "💖 You can support ShinkaBot via PayPal or Ko-fi. Links below! 💖";
   } else if (currentLanguage === 'en') {
