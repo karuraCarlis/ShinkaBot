@@ -2,6 +2,7 @@ let currentLanguage = 'en';
 let shinkansenData = {};
 let stationData = {};
 let map;
+let cityList = [];
 
   const translations = {
     en: {
