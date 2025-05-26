@@ -21,11 +21,6 @@ let cityList = [];
       result: "最寄り駅："
     }
   };
-      // Llamar al cargar la página:
-  window.onload = () => {
-    initMap();// Mostrar mapa base
-    loadStations();  // Cargar solo estaciones
-  };
 
 fetch('data.json')
   .then(response => response.json())
