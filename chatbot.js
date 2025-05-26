@@ -2,6 +2,10 @@ let currentLanguage = 'en';
 let shinkansenData = {};
 let stationData = {};
 let map;
+      // Llamar al cargar la página:
+  window.onload = () => {
+    initMap();
+  };
 let cityList = [];
 
   const translations = {
@@ -34,14 +38,11 @@ fetch('stations.json')
   .then(res => res.json())
   .then(json => {
     stationData = json;
-    setLanguage(language); // Mostrar el mensaje inicial
+    cityList = Object.keys(json); // muy útil para autocomplete
+    setLanguage(currentLanguage); // Mostrar el mensaje inicial
   })
     .catch((err) => {
       console.error("Error loading station data:", err);
-
-      
-  window.onload = () => {
-    initMap();
     });
 
 function setLanguage(lang) {
@@ -139,9 +140,9 @@ function findStation() {
       map.setCenter(coords);
       new google.maps.Marker({ position: coords, map });
       
-      response.textContent = translations[language].result + station[language];
+      response.textContent = translations[currentLanguage].result + station[currentLanguage];
     } else {
-      response.textContent = translations[language].notFound;
+      response.textContent = translations[currentLanguage].notFound;
     }
   }
 
@@ -176,13 +177,6 @@ function showSuggestions() {
     suggestions.style.display = "block";
   }
 
-const coords = { lat: station.lat, lng: station.lon };
-      map.setCenter(coords);
-      new google.maps.Marker({ position: coords, map });
-const coords = { lat: station.lat, lng: station.lon };
-      map.setCenter(coords);
-      new google.maps.Marker({ position: coords, map });
-
 
 function findNearestByGeo() {
   if (!navigator.geolocation) {
@@ -202,11 +196,7 @@ function findNearestByGeo() {
 
 
 
-// Llamar al cargar la página:
-let map;
-window.onload = () => {
-  map = initMap();
-};
+
 
 // Luego, cuando se determina la estación más cercana:
 function mostrarResultado(est) {
