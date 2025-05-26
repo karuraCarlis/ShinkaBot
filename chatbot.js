@@ -194,7 +194,8 @@ function findNearestByGeo() {
   }, err => {
     alert('No se pudo obtener tu ubicación: ' + err.message);
   });
-      
+}
+
 function calcularMasCercana(lat, lon) {
   let nearest = null;
   let minDistance = Infinity;
@@ -228,4 +229,6 @@ function mostrarResultado(est) {
   map.setCenter(coords);
   new google.maps.Marker({ position: coords, map });
   // y muestra el texto en tu div #response...
+  document.getElementById("response").textContent =
+    translations[currentLanguage].result + est[currentLanguage];
 }
