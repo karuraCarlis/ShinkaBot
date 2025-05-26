@@ -130,10 +130,12 @@ function respond(message) {
 
 function initMap(lat = 35.6812, lng = 139.7671) {
   const center = { lat, lng };
-  const map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center
   });
+
+  loadStations(); // <-- aquí llama a cargar las estaciones
   return map;
 }
 
