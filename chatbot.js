@@ -1,6 +1,24 @@
 let currentLanguage = 'en';
 let shinkansenData = {};
+let stationData = {};
 
+  const translations = {
+    en: {
+      ask: "Enter a city or region to find the nearest Shinkansen station:",
+      notFound: "Sorry, I couldn't find a nearby station for that location.",
+      result: "Nearest station: "
+    },
+    es: {
+      ask: "Ingresa una ciudad o región para encontrar la estación de Shinkansen más cercana:",
+      notFound: "Lo siento, no encontré una estación cercana para ese lugar.",
+      result: "Estación más cercana: "
+    },
+    jp: {
+      ask: "新幹線の最寄り駅を探すには、都市または地域を入力してください：",
+      notFound: "申し訳ありませんが、その場所の近くの駅が見つかりませんでした。",
+      result: "最寄り駅："
+    }
+  };
 
 fetch('data.json')
   .then(response => response.json())
@@ -8,8 +26,26 @@ fetch('data.json')
     shinkansenData = data;
   });
 
+fetch('stations.json')
+  .then(res => res.json())
+  .then(json => {
+    stationData = json;
+    setLanguage(language); // Mostrar el mensaje inicial
+  })
+    .catch((err) => {
+      console.error("Error loading station data:", err);
+    });
+
 function setLanguage(lang) {
   currentLanguage = lang;
+
+  // Mostrar el mensaje inicial
+  document.getElementById("ask-text").textContent = translations[lang].ask;
+    document.getElementById("cityInput").placeholder =
+      lang === 'es' ? "Ej. Osaka, Nagano" :
+      lang === 'jp' ? "例：大阪、長野" : "e.g. Osaka, Nagano";
+    document.getElementById("response").textContent = ""
+  
   addMessage(`Language set to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
   clearChat();
 }
@@ -73,4 +109,55 @@ function respond(message) {
 
 
   addMessage(response, 'bot');
+}
+
+function findStation() {
+    const input = document.getElementById("cityInput").value.trim().toLowerCase();
+    const station = stationData[input];
+    const response = document.getElementById("response");
+
+    if (station) {
+      response.textContent = translations[language].result + station[language];
+    } else {
+      response.textContent = translations[language].notFound;
+    }
+  }
+
+function findNearestByGeo() {
+  if (!navigator.geolocation) {
+    alert('Geolocation no está disponible en tu navegador');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(pos => {
+    const { latitude, longitude } = pos.coords;
+    // Aquí llamas a tu lógica para buscar la estación más cercana
+    // Por simplicidad, compara con un array de coordenadas en stations.json
+    const nearest = calcularMasCercana(latitude, longitude);
+    mostrarResultado(nearest);
+  }, err => {
+    alert('No se pudo obtener tu ubicación: ' + err.message);
+  });
+}
+
+function initMap(lat = 35.6812, lng = 139.7671) {
+  const center = { lat, lng };
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center
+  });
+  return map;
+}
+
+// Llamar al cargar la página:
+let map;
+window.onload = () => {
+  map = initMap();
+};
+
+// Luego, cuando se determina la estación más cercana:
+function mostrarResultado(est) {
+  const coords = { lat: est.lat, lng: est.lon };
+  map.setCenter(coords);
+  new google.maps.Marker({ position: coords, map });
+  // y muestra el texto en tu div #response...
 }
