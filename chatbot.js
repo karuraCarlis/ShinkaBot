@@ -27,6 +27,8 @@ fetch('data.json')
     shinkansenData = data;
   });
 
+// Cargar estaciones desde ,  ojo stationData = json
+
 fetch('stations.json')
   .then(res => res.json())
   .then(json => {
@@ -35,6 +37,10 @@ fetch('stations.json')
   })
     .catch((err) => {
       console.error("Error loading station data:", err);
+
+      
+  window.onload = () => {
+    initMap();
     });
 
 function setLanguage(lang) {
@@ -82,7 +88,7 @@ function respond(message) {
     const routes = shinkansenData.routes;
     const fares = shinkansenData.fares;
 
-  if (msg.includes("tokyo") && msg.includes("osaka")) {
+  if (msg.includes("tokyo") || msg.includes("tokio") && msg.includes("osaka")) {
     response = routes["tokyo-osaka"][currentLanguage];
   } else if (msg.includes("osaka") && msg.includes("fuji")) {
     response = routes["osaka-fuji"][currentLanguage];
@@ -128,11 +134,54 @@ function findStation() {
     document.getElementById("suggestions").style.display = "none";
 
     if (station) {
+      const coords = { lat: station.lat, lng: station.lon };
+      map.setCenter(coords);
+      new google.maps.Marker({ position: coords, map });
+      
       response.textContent = translations[language].result + station[language];
     } else {
       response.textContent = translations[language].notFound;
     }
   }
+
+function showSuggestions() {
+    const input = document.getElementById("cityInput").value.toLowerCase();
+    const suggestions = document.getElementById("suggestions");
+    suggestions.innerHTML = '';
+
+    if (!input) {
+      suggestions.style.display = "none";
+      return;
+    }
+
+    const matches = cityList.filter(city => city.includes(input));
+    if (matches.length === 0) {
+      suggestions.style.display = "none";
+      return;
+    }
+
+    matches.forEach(city => {
+      const li = document.createElement('li');
+      li.textContent = city;
+      li.style.padding = '5px';
+      li.style.cursor = 'pointer';
+      li.onclick = () => {
+        document.getElementById("cityInput").value = city;
+        suggestions.style.display = "none";
+      };
+      suggestions.appendChild(li);
+    });
+
+    suggestions.style.display = "block";
+  }
+
+const coords = { lat: station.lat, lng: station.lon };
+      map.setCenter(coords);
+      new google.maps.Marker({ position: coords, map });
+const coords = { lat: station.lat, lng: station.lon };
+      map.setCenter(coords);
+      new google.maps.Marker({ position: coords, map });
+
 
 function findNearestByGeo() {
   if (!navigator.geolocation) {
