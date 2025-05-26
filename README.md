@@ -1,3 +1,4 @@
+SHINKANBOT
 This project is an independent informational tool created to help travelers (first timers, seniors) to better understand the bullet train (Shinkansen) system in Japan and the services around it in English and Spanish.
 It is not affiliated with or endorsed by JR (Japan Railways) or any of its official services or third parties.
 The information provided will be based on public sources and personal experience.
