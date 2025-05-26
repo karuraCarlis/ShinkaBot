@@ -92,7 +92,9 @@ function respond(message) {
     const routes = shinkansenData.routes;
     const fares = shinkansenData.fares;
 
-  if (msg.includes("tokyo") || msg.includes("tokio") && msg.includes("osaka")) {
+  if (msg.includes("tokyo") && msg.includes("osaka")) {
+    response = routes["tokyo-osaka"][currentLanguage];
+  } else if ( msg.includes("tokio") && msg.includes("osaka")) {
     response = routes["tokyo-osaka"][currentLanguage];
   } else if (msg.includes("osaka") && msg.includes("fuji")) {
     response = routes["osaka-fuji"][currentLanguage];
@@ -100,9 +102,11 @@ function respond(message) {
     response = routes["fuji-nagano"][currentLanguage];
   } else if (msg.includes("tokyo") && msg.includes("nagano")) {
     response = routes["tokyo-nagano"][currentLanguage];
+  } else if (msg.includes("tokio") && msg.includes("nagano")) {
+    response = routes["tokyo-nagano"][currentLanguage];
   } else if (msg.includes("child") || msg.includes("niño") || msg.includes("子供")) {
     response = fares.children[currentLanguage];
-  } else if (msg.includes("donate") || msg.includes("apoyar")) {
+  } else if (msg.includes("donate") || msg.includes("apoyar")|| msg.includes("donar")) {
     response = "💖 You can support ShinkaBot via PayPal or Ko-fi. Links below! 💖";
   } else if (currentLanguage === 'en') {
     response = `You asked in English: "${message}". I'm still learning, but happy to help!Please try a different question about the Shinkansen.`;
