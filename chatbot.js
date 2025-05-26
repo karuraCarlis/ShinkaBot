@@ -2,10 +2,6 @@ let currentLanguage = 'en';
 let shinkansenData = {};
 let stationData = {};
 let map;
-      // Llamar al cargar la página:
-  window.onload = () => {
-    initMap();
-  };
 let cityList = [];
 
   const translations = {
@@ -25,6 +21,11 @@ let cityList = [];
       result: "最寄り駅："
     }
   };
+      // Llamar al cargar la página:
+  window.onload = () => {
+    initMap();// Mostrar mapa base
+    loadStations();  // Cargar solo estaciones
+  };
 
 fetch('data.json')
   .then(response => response.json())
@@ -33,7 +34,7 @@ fetch('data.json')
   });
 
 // Cargar estaciones desde ,  ojo stationData = json
-
+function loadStations() {
 fetch('stations.json')
   .then(res => res.json())
   .then(json => {
@@ -44,6 +45,7 @@ fetch('stations.json')
     .catch((err) => {
       console.error("Error loading station data:", err);
     });
+}
 
 function setLanguage(lang) {
   currentLanguage = lang;
@@ -55,8 +57,8 @@ function setLanguage(lang) {
       lang === 'jp' ? "例：大阪、長野" : "e.g. Osaka, Nagano";
     document.getElementById("response").textContent = ""
   
-  addMessage(`Language set to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
-  clearChat();
+ addMessage(`Language set to ${lang === 'en' ? 'English' : lang === 'es' ? 'Español' : '日本語'}`, 'bot');
+ clearChat();
 }
 
 function clearChat() {
@@ -192,12 +194,34 @@ function findNearestByGeo() {
   }, err => {
     alert('No se pudo obtener tu ubicación: ' + err.message);
   });
+      
+function calcularMasCercana(lat, lon) {
+  let nearest = null;
+  let minDistance = Infinity;
+
+  for (const key in stationData) {
+    const station = stationData[key];
+    const d = distancia(lat, lon, station.lat, station.lon);
+    if (d < minDistance) {
+      minDistance = d;
+      nearest = station;
+    }
+  }
+  return nearest;
 }
 
-
-
-
-
+// Distancia entre dos puntos (Haversine)
+function distancia(lat1, lon1, lat2, lon2) {
+  const R = 6371; // km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
 // Luego, cuando se determina la estación más cercana:
 function mostrarResultado(est) {
   const coords = { lat: est.lat, lng: est.lon };
