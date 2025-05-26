@@ -1,6 +1,7 @@
 let currentLanguage = 'en';
 let shinkansenData = {};
 let stationData = {};
+let map;
 
   const translations = {
     en: {
@@ -111,10 +112,20 @@ function respond(message) {
   addMessage(response, 'bot');
 }
 
+function initMap(lat = 35.6812, lng = 139.7671) {
+  const center = { lat, lng };
+  const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center
+  });
+  return map;
+}
+
 function findStation() {
     const input = document.getElementById("cityInput").value.trim().toLowerCase();
     const station = stationData[input];
     const response = document.getElementById("response");
+    document.getElementById("suggestions").style.display = "none";
 
     if (station) {
       response.textContent = translations[language].result + station[language];
@@ -139,14 +150,7 @@ function findNearestByGeo() {
   });
 }
 
-function initMap(lat = 35.6812, lng = 139.7671) {
-  const center = { lat, lng };
-  const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 10,
-    center
-  });
-  return map;
-}
+
 
 // Llamar al cargar la página:
 let map;
